@@ -9,7 +9,7 @@ Web Change Detector is a Django-based tool that **monitors websites for content 
 ✅ **Asynchronous Web Crawling** using `crawl4ai`\
 ✅ **Content Hashing** for accurate change detection\
 ✅ **Automated Website Monitoring**\
-✅ **Email Notifications** for detected changes\
+✅ **Notifications** for detected changes\
 ✅ **Django ORM Integration** for database storage\
 ✅ **Logging and Status Tracking**
 
@@ -19,7 +19,7 @@ Web Change Detector is a Django-based tool that **monitors websites for content 
 2. **Generate Hash**: Computes a hash for each webpage's content.
 3. **Compare Hashes**: Checks for changes between old and new content.
 4. **Trigger Alerts**: Sends email notifications if changes are found.
-5. **Store Results**: Saves check history in the database for review.
+5. **Store Results**: Saves check history in the database/storage for review.
 
 ## Installation
 
@@ -49,17 +49,32 @@ pip install -r requirements.txt
 python manage.py migrate  
 ```
 
-### **5. Run the Django Development Server**
+### **5. Create a superuser**
 
 ```bash
-python manage.py runserver  
+python manage.py createsuperuser 
 ```
+
+### **6. Run the Django Task**
+
+```bash
+python manage.py run__task  
+```
+### **7. Open your browser and go to**
+
+```bash
+http://127.0.0.1:8000/admin
+```
+### **8. Log in using the credentials created in step 5**
+### **9. Look for the status, under Home section**
+
+
 
 ## Configuration
 
-### **Database Settings**
+### **Database/Storage Settings**
 
-Update `DATABASES` in `settings.py` if you're using PostgreSQL, MySQL, or another database.
+Update `DATABASES` in `settings.py` if you're using PostgreSQL, MySQL, or another database. Or you can save your content, hash values and other information in text or pdf files.
 
 ### **Email Notifications**
 
@@ -75,19 +90,6 @@ EMAIL_HOST_PASSWORD = 'your_password'
 ```
 
 Replace with your **SMTP provider details** (Gmail, AWS SES, SendGrid, etc.).
-
-## Running the Web Change Detector
-
-### **1. Start the Check Process**
-
-Inside Django’s shell (`python manage.py shell`), you can manually run the detector:
-
-```python
-from detector_app.views import check_start  
-check_start()  
-```
-
-Or automate it using **Celery** or **a cron job**.
 
 ## Technologies Used
 
